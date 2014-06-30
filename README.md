@@ -35,6 +35,7 @@ module ApplicationName
         all_resources!
         # single/multiple delimited string(s), regexp(s), or array(s) of both
         credentials ENV['RESTRICTED_ACCESS_CREDENTIALS'], :delimiter => ","
+
       end
 
       # single/multiple delimited string(s), regexp(s), or array(s) of both
@@ -97,7 +98,7 @@ end
 
 ##### Credentials
 
-Designate one or multiple valid username/password combinations.
+Designate one or multiple valid username/password combinations. Can be single/multiple delimited strings, hashes (where :username and :password are set to a string or regexp), or arrays of strings
 
 
 ```
@@ -105,10 +106,12 @@ restrict do
   all_resources!
 
   #delimiter options required if dealing with delimited strings:
-
   credentials "stewie:coolwhip|brian:novel" :credentials_delimiter => ":", :credential_pair_delimiter => "|"
 
   #delimiter options default to :credentials => "," and :credential_pair_delimiter => ";" , respectively
+
+  #or single/multiple hashes:
+  credentials :username => "admin", :password => "password123"
 end
 ```
 
